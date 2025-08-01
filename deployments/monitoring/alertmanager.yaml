@@ -1,0 +1,16 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: "discord"
+  group_by: ["alertname"]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 1h
+
+receivers:
+  - name: "discord"
+    slack_configs:
+      - webhook_url: "https://discord.com/api/webhooks/1400553953304776714/-wJqMWawnylehX0SCQ_d1ZRUUYMLQrOK6HTQsG2wOTKSWhHyZRaaTSz2QrYN-01JZ60o"
+        # channel isn’t really used by Discord, you can omit it
+        send_resolved: true

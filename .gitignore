@@ -1,0 +1,11 @@
+.env
+langfuse/
+bge-reranker-large/
+vector_store/
+bge-reranker-large.tgz
+models/
+secrets/
+vectorstore/
+*.pyc
+*.pyo
+__pycache__/

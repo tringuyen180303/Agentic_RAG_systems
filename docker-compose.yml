@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    volumes:
+      - ollama_models:/root/.ollama        # cache weights
+    environment:
+      OLLAMA_MAX_QUEUE: 64
+    ports:
+      - "11434:11434"                      # local only – keep behind LB/VPN
+    deploy:
+      resources:
+        limits:
+          memory: 14g
+        reservations:
+          memory: 6g
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    depends_on:
+      - ollama
+    environment:
+      OLLAMA_URL:  http://ollama:11434
+      CHROMA_HOST: chroma
+      CHROMA_PORT: 8000
+      LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY}
+      LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY}
+
+    ports:
+      - "8080:8080"                        # external API
+    volumes:
+      - ./vectorstore:/vectorstore         # persists embeddings
+
+  chroma:
+    image: ghcr.io/chroma-core/chroma:latest
+    container_name: chroma
+    volumes:
+      - ./vectorstore:/chroma/chroma       # same path as above
+    environment:
+      IS_PERSISTENT: "TRUE"
+    ports:
+      - "8000:8000"                        # internal only
+
+volumes:
+  ollama_models:
+    

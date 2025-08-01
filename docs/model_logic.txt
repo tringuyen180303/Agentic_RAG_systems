@@ -1,0 +1,347 @@
+*** Core Size/Pressure Constraints
+A vane classified as Size S or M is not allowed with maximum pressures E or HF.
+
+A vane classified as Size L is not allowed with maximum pressures M, H, or HF.
+
+A vane classified as Size X is only valid with maximum pressure HF; therefore it is not allowed with pressures N, M, H, or E.
+
+*** Combined Size‑Pressure & Housing Material
+Model SM (Size S, Max M) cannot use housing material A or B.
+
+Model SH (Size S, Max H) cannot use housing material A, B, D, or F.
+
+Model MM (Size M, Max M) cannot use housing material A or B.
+
+Model MH (Size M, Max H) cannot use housing material A, B, D, or F.
+
+Model LN (Size L, Max N) cannot use housing material A or B.
+
+Model LE (Size L, Max E) cannot use housing material A, B, D, or F.
+
+Model XHF (Size X, Max HF) cannot use housing material A, B, or F.
+
+***Internal Components & Materials
+
+Vane Size L may not be ordered with internal moving‑parts type T.
+
+Vane Size X may not be ordered with internal moving‑parts type T.
+
+Vane Size X may not be ordered with seal material K.
+
+Flow‑Rate Restrictions (by Size)
+
+Size S models cannot be paired with any of the listed flow rates in the long 
+30,40,50,60,70,80,90,100,120,130,140,150,160,200,300,400,500,600,800,1000,1500GM
+GH
+70,80,90,100,150,200,250,300,350,400,500,600,800,1200,1500,1800,2000,2500,3000,3500,5600LM
+LH
+2.25,5,6,7,8,9,10,15,20,25,30,40,50,70,90,120,140,180,220,340CMH
+30,40,50,60,70,80,90,100,120,130,140,150,160,200,300,400,500,600,800,1000,1500GLM
+
+Size M models cannot be paired with any of the listed flow rates in 0.5,1,1.5,2,3,4,5,6,7,8,9,200,300,400,500,600,800,1000,1500GM
+30,60,90,120,180,240,300,400,500,600,700,800,900,1000,1200GH
+2,4,6,8,10,15,20,25,30,35,45,75,800,1200,1500,1800,2000,2500,3000,3500,5600LM
+100,200,350,500,600,700,800,900,1000,1500,2000,2500,3000,3500,4000LH
+0.1,0.25,0.35,0.5,0.75,1,1.25,1.5,2,3.5,4.5,40,50,70,90,120,140,180,220,340CMH
+0.5,1,1.5,2,3,4,5,6,7,8,9,200,300,400,500,600,800,1000,1500GLM
+
+Size L models cannot be paired with any of the listed flow rates in 0.5,1,1.5,2,3,4,5,6,7,8,9,10,15,20,30,40,50,60,70,90,110,120,130,140,160,600,800,1000,1500GM
+30,60,90,120,180,240,300,400,500,600,700,800,900,1000,1200GH
+2,4,6,8,10,15,20,25,30,35,40,45,50,60,70,75,80,90,100,150,200,250,350,500,2000,2500,3000,3500,5600LM
+100,200,350,500,600,700,800,900,1000,1500,2000,2500,3000,3500,4000LH
+0.1,0.25,0.35,0.5,0.75,1,1.25,1.5,2,2.25,2.5,3,3.5,4,4.5,5,6,7,8,9,10,15,20,25,30,140,180,220,340CMH
+0.5,1,1.5,2,3,4,5,6,7,8,9,10,15,20,30,40,50,60,70,90,110,120,130,140,160,600,800,1000,1500GLM
+
+Size X models cannot be paired with any of the listed flow rates in 0.5,1,1.5,2,3,4,5,6,7,8,9,10,15,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,200,300,400GM
+30,60,90,120,180,240,300,400,500,600,700,800,900,1000,1200GH
+2,4,6,8,10,15,20,25,30,35,40,45,50,60,70,75,80,90,100,150,200,250,300,350,400,500,600,800,1200,1500,1800LM
+100,200,350,500,600,700,800,900,1000,1500,2000,2500,3000,3500,4000LH
+0.1,0.25,0.35,0.5,0.75,1,1.25,1.5,2,2.25,2.5,3,3.5,4,4.5,5,6,7,8,9,10,15,20,25,30,40,50,70,90CMH
+0.5,1,1.5,2,3,4,5,6,7,8,9,10,15,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,200,300,400,500,600,800,1000,1500GLM
+
+
+*** Pipe‑Size & Attachment Rules (Small Vane)
+
+A Small, non‑corrosive model (Max ≠ X) must use pipe sizes 2, 3, 4, 6, 8 or their threaded/welded variants 4T,6T,8T,10T,12T
+4BP,6BP,8BP,10BP,12BP, 4BT,6BT,8BT,10BT,12BT
+
+A Small, corrosive model (Max X) must use pipe sizes 2MP, 4MP, 6MP, 8MP, 2FP, 4FP, 6FP, 4FS, 6FS, 4R, 8R.
+
+If a Small vane uses pipe size 8, an ANSI flange must be specified (blank flange attachment is invalid).
+
+*** 
+Pipe‑Size & Attachment Rules (Medium Vane)
+
+A Medium, non‑corrosive model (Max ≠ X) must use the pipe sizes 4,6,8,10,12,16
+ or their 8T,12T,16T,20T,24T
+8BP,12BP,16BP,20BP,24BP,32BP
+8BT,12BT,16BT,20BT,24BT,32BT variants as listed.
+
+A Medium, corrosive model (Max X) cannot use connection types other than 8I,12I
+8V,12V
+8P,12P
+8R,12R,16R,20R,24R
+
+*** Pipe size (Large Vane)
+Vane size L models must use pipe sizes 12, 16, 20, 24, 32 (or their weld variants 12W,16W,20W,24W,32W). Any other pipe size is invalid.
+
+Vane size X models are limited to pipe sizes 32W, 48W, 64W; all other pipe sizes are invalid.
+
+Vane sizes L and X cannot be paired with control boxes A, L, or Z.
+
+A Small vane size S using control box R cannot be ordered with switches 18 or 19.
+
+***Corrosive‑Rated Models (Maximum Pressure X)
+
+Corrosive rating X is not allowed with vane sizes L or X.
+
+Corrosive models require housing material V or P; all other housings are invalid.
+
+Globe‑valve option V is not permitted on corrosive models.
+
+Acceptable pipe‑size / connection types for corrosive models are restricted to the full list (2MP,4MP,6MP,8MP,
+2FP,4FP,6FP,
+4FS,6FS,
+4R,8R,12R,16R,20R,24R,
+8I,12I,
+8V,12V,
+8P,12P); any other connection is invalid.
+
+Corrosive models cannot use ANSI flanges (FW/FT, materials CS/S, classes 150/300, style RF).
+
+Dual‑viscosity selection is disallowed on corrosive models.
+
+Shell‑service “/” (unspecified) is disallowed on corrosive models.
+
+Options HT, Z17, Z25, Z67, ZRF, ZSHELLR1 are all invalid on corrosive models.
+
+Viscosity must be that of water (32 V, 1 C, or 1 CS) when corrosive pressure X is chosen.
+
+Specific gravity must be ≥ 1.00 for corrosive models.
+
+*** Housing‑Material Specific Pipe‑Size Limits
+
+Polysulfone (Housing P) is not compatible with pipe connections 8V, 12V, 4R, 8R, 12R, 16R, 20R, 24R.
+
+PVC (Housing V) is not compatible with pipe connections 8P or 12P.
+
+Corrosive‑Specific Pipe‑Size Rules by Size
+
+Vane size Small (Size S) + Max X models must use only 2MP, 4MP, 6MP, 8MP, 2FP, 4FP, 6FP, 4FS, 6FS, 4R, 8R.
+
+Vane size Medium (Size M) + Max X models must use only 8R,12R,16R,20R,24R, 8I/12I, 8V/12V, 8P/12P.
+
+Vane size Medium (size M) is not using housing V
+
+*** Flow‑Rate & Pipe‑Size Detailed Matrix
+
+A Small, non‑corrosive vane Non‑Corrosive (Max ≠ X) using pipe sizes 2, 4T, 4BP, or 4BT is invalid at flow rates 9, 10, 15, 20 GM; 9,10,15,20GM
+500,600,700,800,900,1000,1200GH
+35,40,45,50,60LM
+2000,2500,3000,3500,4000LH
+2,2.5,3,3.5,4,4.5CMH
+9,10,15,20GLM
+
+A Small, non‑corrosive van  Non‑Corrosive (Max ≠ X) using pipe sizes 3, 6T, 6BP, or 6BT is invalid at the same flow‑rate range as above 9,10,15,20GM
+500,600,700,800,900,1000,1200GH
+35,40,45,50,60LM
+2000,2500,3000,3500,4000LH
+2,2.5,3,3.5,4,4.5CMH
+9,10,15,20GLM
+
+A Small, non‑corrosive (Max ≠ X) vane using pipe size 4, 8T, 8BP, or 8BT is invalid at 15 – 20 GM; 700 – 1200 GH; 40 – 75 LM; 2500 – 4000 LH; 2.5 – 4.5 CMH; or 15 – 20 GLM.
+
+A Small, non‑corrosive vane using pipe size 10T, 10BP, or 10BT is invalid at 20 GM; 1000 – 1200 GH; 60 – 75 LM; 3500 – 4000 LH; 3.5 – 4.5 CMH; or 20 GLM.
+
+*** Small Vane — Corrosive (Max = X)
+
+A Small, corrosive vane using pipe sizes 2MP or 2FP is invalid at flow rates 0.5 – 2 GM and 9 – 20 GM; 30 – 1200 GH; 2 – 60 LM and 35 – 60 LM; 100 – 4000 LH; 0.1 – 0.5 CMH and 2 – 4.5 CMH; or 0.5 – 2 GLM and 9 – 20 GLM.
+
+A Small, corrosive vane using pipe sizes 4MP, 4FP, 4FS, or 4R is invalid at 0.5 – 2 GM and 15 – 20 GM; 30 – 1200 GH; 2 – 8 LM and 40 – 75 LM; 100 – 4000 LH; 0.1 – 0.5 CMH and 2.5 – 4.5 CMH; or 0.5 – 2 GLM and 15 – 20 GLM.
+
+A Small, corrosive vane using pipe sizes 6MP, 6FP, or 6FS is invalid at 0.5 – 2 GM and 15 – 20 GM; identical extended GH/LM/LH/CMH/GLM ranges as above.
+
+A Small, corrosive vane using pipe sizes 8MP or 8R is invalid at 0.5 – 2 GM; 30 – 1200 GH; 2 – 8 LM; 100 – 4000 LH; 0.1 – 2 CMH; or 0.5 – 2 GLM.
+
+Medium Vane — Non‑Corrosive (Max ≠ X)
+
+A Medium, non‑corrosive vane using pipe sizes 4, 8T, 8BP, or 8BT is invalid at 30 – 160 GM; GH ≥ (implicit) high; 80 – 600 LM; 5 – 30 CMH; or 30 – 160 GLM.
+
+The same size using pipe sizes 6, 12T, 12BP, or 12BT is invalid at 60 – 160 GM; 30 – 1200 GH; 200 – 600 LM; etc.
+
+Pipe sizes 10, 20T, 20BP, 20BT have the same invalid flow‑rate window 80 – 160 GM; 300 – 600 LM; 20 – 30 CMH; 80 – 160 GLM.
+
+Pipe sizes 12, 24T, 24BP, 24BT, 12R, 12I, 12V, 12P are invalid at 110 – 160 GM; 400 – 600 LM; 25 – 30 CMH; 110 – 160 GLM.
+
+Medium Vane — Corrosive (Max = X)
+
+A Medium, corrosive vane using pipe sizes 8, 16T, 16BP, 16BT, 8R, 8I, 8V, 8P is invalid at 80 – 160 GM; 300 – 600 LM; 20 – 30 CMH; or 80 – 160 GLM.
+
+Large & Extra‑Large Vane Flow Windows
+
+A Large (Size L) vane with pipe sizes 12 / 12W must only operate at flow rates 150 – 500 GM; 400 – 1800 LM; 40 – 120 CMH; or 150 – 500 GLM.
+
+A Large (Size L) vane with pipe sizes 16 / 16W must only operate at 200 – 500 GM; same LM/CMH/GLM windows as above.
+
+A Large (Size L) vane with pipe sizes 20 / 20W must only operate at 400 – 500 GM; 1200 – 1800 LM; 70 – 120 CMH; or 400 – 500 GLM.
+
+A Large (Size L) vane with pipe sizes 24 / 24W must only operate at 500 GM; 1800 LM; 120 CMH; or 500 GLM.
+
+An Extra‑Large (Size X) vane with pipe size 32W must only operate at 800, 1000, or 1500 GM; 2500 – 5600 LM; 140 – 340 CMH; or 800, 1000, 1500 GLM.
+
+An Extra‑Large (Size X) vane with pipe size 48W must only operate at 1500 GM; 5600 LM; 340 CMH; or 1500 GLM.
+
+Option DS vs Flow‑Rate
+
+For Medium (Size M) vanes, selecting Option DS is invalid when the flow rate is 10 – 80 GM; 40 – 300 LM; 2.25 – 15 CMH; or the equivalent GLM list.
+
+For Large (Size L) vanes at flow rates 400 – 500 GM; 1500 – 1800 LM; 90 – 120 CMH; or 400 – 500 GLM, Option DS is mandatory.
+
+For Large (Size L) vanes at flow rates 80 – 200 GM; 300 – 800 LM; or 40 – 50 CMH, Option DS must not be selected.
+
+If the selected pipe size / connection type is not one of 2, 3, 4, 6, 8, 10, 12, 16, 20, 24, 32, then no ANSI flange may be added. Any attempt to combine an out‑of‑range pipe size with FW/FT attachments, CS/S materials, 150/300 classes, or RF style is invalid.
+
+
+***Globe‑Valve 
+
+Globe valve option V remains invalid with vane sizes L and X.
+
+Globe valve V is invalid with maximum pressures M, E, H, or HF.
+
+Globe valve V is invalid with housing materials D or F.
+
+Small (Size S) vanes using globe valve V must not be ordered at flow rates 15–20 GM; 700–1200 GH; 40–75 LM; 2500–4000 LH; 2.5–4.5 CMH; or 15–20 GLM.
+
+Medium (Size M) vanes using globe valve V and pipe size ½ in, ¾ in, 1 in are invalid at flow rates 40–80 GM; 150–250 LM; 7–15 CMH; or 40–80 GLM.
+
+Medium (Size M) vanes using globe valve V and pipe size 1¼ in or 1½ in are invalid at flow rates 60–140 GM; 200–350 LM; 15–25 CMH; or 60–140 GLM.
+
+*** ANSI Flange Material & Attachment Rules
+
+Flange material CS cannot be paired with housings I, B, or F.
+
+Flange material S cannot be paired with housings A, D, or M.
+
+Welded attachment FW with material CS is allowed only on carbon‑steel housings; any attempt to use FW‑CS with housings A, I, D, B, F is invalid.
+
+Welded attachment FW with material S is allowed only on stainless housings; it is invalid with housings A, M, D, B, F.
+
+Model SM (Size S, Max M) may not use class‑150 ANSI flanges.
+
+Model LE (Size L, Max E) may not specify any welded or threaded raised‑face ANSI flange (FW/FT, CS/S, 150/300 class, RF style) for pipe sizes 12, 16, 20, 24, 32.
+
+*** ANSI Flange Material & Attachment Rules
+
+Flange material CS cannot be paired with housings I, B, or F.
+
+Flange material S cannot be paired with housings A, D, or M.
+
+Welded attachment FW with material CS is allowed only on carbon‑steel housings; any attempt to use FW‑CS with housings A, I, D, B, F is invalid.
+
+Welded attachment FW with material S is allowed only on stainless housings; it is invalid with housings A, M, D, B, F.
+
+Model SM (Size S, Max M) may not use class‑150 ANSI flanges.
+
+Model LE (Size L, Max E) may not specify any welded or threaded raised‑face ANSI flange (FW/FT, CS/S, 150/300 class, RF style) for pipe sizes 12, 16, 20, 24, 32.
+
+***Viscosity & Specific‑Gravity Input Limits
+
+When FLUID VISCOSITY UNIT OF MEASURE is Unit V – The viscosity entered must be between 1 cP and 3000 cP, inclusive, and may only be specified in whole‑number increments.
+
+When FLUID VISCOSITY UNIT OF MEASURE is CS – The viscosity entered must be between 1 cSt and 650 cSt, inclusive, again using whole‑number increments.
+
+When FLUID VISCOSITY UNIT OF MEASURE is C – The viscosity entered must be between 1 cP and 583 cP, inclusive, with a minimum step size of one.
+
+Specific gravity – The value must be between 1.00 and 2.00, inclusive, and may only be set in 0.01 increments.
+
+*** Control‑Box / Switch / Transmitter / LCD (Full Matrix)
+
+Control boxes A, L, Z cannot use switches 7, 17, 18, 19.
+
+Control box T cannot use switches 1B, 2B, 62, 71, 72, 53, 54, 7, 17, 18, 19.
+
+Control box R cannot use switches 53 or 54.
+
+Control box T requires a transmitter (X or H). If transmitter is blank, the configuration is invalid.
+
+When control box A, L, Z include a transmitter (X or H), switch 0 becomes mandatory.
+
+Control box T with transmitter X and LCD L cannot use switches 2 or 4.
+
+Control box T with transmitter H cannot use switch 61.
+
+Selecting transmitter H forbids pairing with LCD L under any control‑box.
+
+Control box R with transmitter X must use one of the switches 0, 1, 2, 3, 4, 61.
+
+Control box R with transmitter H must use one of the switches 0, 1, 2, 3, 4.
+
+LCD L is invalid on control boxes A, L, Z, R and cannot be used on dual‑range (GLM) flow meters.
+
+Small (Size S) vanes with switches 7 or 17 are invalid at very low flow‑rate windows 0.5 – 4 GM; 30 – 240 GH; 2 – 15 LM; 100 – 1000 LH; 0.1 – 1 CMH; 0.5 – 4 GLM.
+
+Switches 61 and 62 require Option HT and cannot be combined with seal material B.
+
+
+*** Option / Service Interactions (Addenda)
+
+Control boxes R and T cannot be ordered with service code N.
+
+Option DS remains invalid on vane sizes S and X ; additionally, it conflicts with many flow‑rate bands for Size M and is mandatory / prohibited on certain Size L bands (see Flow‑Rate & Pipe‑Size matrix).
+
+Option E is invalid on sizes S, L, X.
+
+Options F, HA, W are invalid on sizes M, L, X.
+
+Options F or W cannot be combined with any ANSI flange (FW/FT, CS/S, 150/300, RF).
+
+Options F is not valid with Option W.
+
+Option HA is invalid at flow rates (0.5GM
+30GH
+2LM
+100LH,200LH
+0.1CMH
+0.5GLM) and when using transmitter X or H or hazardous switches 7, 17, 18, 19.
+
+
+Option HT is invalid with service N and with seal material B.
+
+Option ST requires two custom name‑plate text entries — Row 1 and Row 2, each limited to 25 characters. If either row is missing, the configuration is invalid.
+
+Option Z17 is not allowed with Size X or with max pressures M, E, H, HF and is only valid when the housing material is B or F.
+
+Option Z18 cannot coexist with Z18A, 
+
+Z18/Z18A is not used with control boxes L, R, T.
+
+Option Z25 must use housing material M and is invalid on Size L or X.
+
+Option Z25 not valid with Maximum Pressures N,M,E,HF.
+
+Options Z67 and Z86 are invalid on Size L or X; 
+Z67 also invalid at max pressure H; 
+
+option Z86 and vane size S can not use with flow rate 0.5,1,1.5,2,3,4,10,15,20GM
+30,60,90,120,180,240,600,700,800,900,1000,1200GH
+2,4,6,8,10,15,40,45,50,60,75LM
+100,200,350,500,600,700,800,900,2500,3000,3500,4000LH
+0.1,0.25,0.35,0.5,0.75,2.5,3,3.5,4,4.5CMH
+0.5,1,1.5,2,3,4,10,15,20GLM
+
+option Z86 and vane size M can not use with flow rate 10,15GM
+40,50LM
+2.25,2.5,3CMH
+
+Option ZRF requires control box A and not used with flow directions L or R.
+
+Option ZSHELLR1 requires control box A, switch 0, and neutral service “/”. 
+
+Option ZSHELLR1 cannot be combined with options HT or ST.
+
+
+A Medium‑size (M) vane at standard pressure (N) with housing materials D or F cannot be ordered with globe‑valve option V.
+
+Carbon‑steel welded flange prohibition – Selecting flange attachment FW together with flange material CS is always invalid.
+
+High‑pressure small & medium flange restriction – Any Small (S) or Medium (M) vane at maximum pressure H cannot use any welded or threaded raised‑face ANSI flange on pipe sizes 2, 3, 4, 6, 8, 10, 12, 16 (no FW/FT, no CS/S materials, class 150/300, style RF).

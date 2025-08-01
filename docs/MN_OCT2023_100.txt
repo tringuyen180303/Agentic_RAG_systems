@@ -1,0 +1,147 @@
+1 Series / pressure class
+MN – “Normal” pressure, 300 psi (20.7 bar)
+
+MM – Medium pressure, 500 psi (34.5 bar) – swap this for MN when you need the stronger 500-psi body.
+
+MH – High pressure, 2 000 psi (138 bar) – swap this in when you need the 2 000-psi rating.
+
+2 Housing material & flow-chamber liner
+Code	Body / liner combination	Typical fluid
+A	Aluminium body with nylon flow chamber	Lube-oil service
+B	Brass body with nylon flow chamber	Water
+D	Bare aluminium body (no nylon liner)	Lube oil
+F	Bare brass body	Water
+I	316 SS body	Chemicals & corrosives
+M	Carbon-steel body	Oil
+
+3 Internal moving parts (vane shaft, etc.)
+I – 316-series stainless steel for corrosives
+
+T – Titanium for sea-water duty
+
+4 Seal material
+B – Buna-N (NBR) for water or petroleum oils
+
+F – Viton ® for acids, caustics or synthetic oils
+
+K – Kalrez ® dynamic seals + Viton static seals for specialty or high-chem exposure
+
+5 Maximum-flow scale codes (pick one, then choose a flow value printed in the catalog)
+GM – U.S. gallons per minute (10 – 160 GPM choices)
+
+LM – Litres per minute (40 – 600 LPM choices)
+
+CMH – Cubic metres per hour (2.25 – 30 m³/h choices)
+
+GLM – Dual GPM / LPM scale
+
+DGM – Dual-viscosity GPM scale (for start-up vs. running viscosity)
+
+LCD versions do not allow dual scales
+
+6 Integral hand-operated globe valve (MN series only)
+No letter = no valve
+
+V = Brass globe valve built into the MN body
+Only available on MN aluminium-or-brass housings with ports ≤ 1 in. and flow ≤ 30 GPM (50 GPM on 1½-in. housings). Not offered on carbon- or stainless-steel bodies.
+
+7 Threaded port codes (size + thread form)
+Nominal pipe size	NPT	SAE straight	BSPP	BSPT	Max flow*
+½″	4	8T	8BP	8BT	25 GPM
+¾″	6	12T	12BP	12BT	50 GPM
+1″	8	16T	16BP	16BT	70 GPM
+1¼″	10	20T	20BP	20BT	70 GPM
+1½″	12	24T	24BP	24BT	100 GPM
+2″	16	—	32BP	32BT	160 GPM
+*Maximum flow is the highest standard range available for that port.		
+
+8 Flanged connections
+A flange block replaces the threaded-port digit and spells out:
+[size] [F W|T] [CS|S] [class] [RF]
+
+FW = weld-neck flange, FT = threaded flange
+
+CS = carbon steel flange, S = 316 SS flange
+
+150 / 300 = ANSI pressure class
+
+RF = raised face
+Example 4FTCS150RF → ½-in. threaded, carbon-steel, class-150, raised-face flange.
+
+9 Fluid-property calibration block
+After the flow-scale code you append viscosity + specific gravity:
+[viscosity] [V|C|CS] [SG]
+
+V = SSU, C = cP, CS = cSt
+
+32ØV.9 means 320 SSU, SG 0.9
+
+Dual viscosities use a slash: 32Ø/150V.9.
+
+Putting it all together
+A model string such as
+
+MM-B I F 70GM-8-32ØV.9-V
+
+decodes as:
+
+MM – Medium-pressure (500 psi) series
+
+B – Brass body with nylon chamber for water
+
+I – 316 SS internals
+
+F – Viton seals
+
+70GM – 70 GPM maximum flow scale
+
+-8 – 1-inch NPT ports
+
+32ØV.9 – Calibrated at 320 SSU, SG 0.9
+
+-V – Integral brass globe valve (MN/MM only)
+
+Swap any of the highlighted tokens—MM for MN/MH, B for A/D/F/I/M, F for B/K, 70GM for any flow code, 8 for any port/flange code, V for “no valve,” etc.—to create the exact meter your application needs, confident that each replacement is defined in the catalog table.
+
+Quick-swap reference for that code fragment
+Service rating
+
+N – Oil- & dust-tight enclosure (NEMA Type 12) 
+
+W – Weather-proof enclosure (Type 4) 
+
+X – Weather-proof and corrosion-proof enclosure (Type 4X) 
+
+Flow direction
+
+R – Left-to-right flow through the meter 
+
+L – Right-to-left flow
+
+U – Up-flow (bottom → top)
+
+D – Down-flow (top → bottom)
+
+Control-box + switch (one SPDT, 3-wire limit switch)
+
+A1 – Polysulfone A-box 
+
+L1 – Aluminium L-box
+
+Z1 – 316 SS Z-box
+
+Special options (insert after the flow-direction letter, separated by dashes; you may list more than one)
+
+HT – High-temperature build (to 400 °F) 
+
+ST – Stainless ID tag
+
+TG – Laminated safety-glass window
+
+E – Manual override shaft
+
+DS – Dual-spring vane (better low-flow readability)
+
+Z86 – Clearance vane for particulate fluids
+
+Z67MH – 316 SS external bolts on MH-I units (derates pressure to 1 500 psi)

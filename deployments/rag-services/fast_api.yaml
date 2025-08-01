@@ -1,0 +1,47 @@
+# deployment‑api.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-api
+  namespace: rag-services
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: rag-api }
+  template:
+    metadata:
+      labels: { app: rag-api }
+    spec:
+      containers:
+      - name: rag-api
+        image: docker.io/tringuyen180303/rag-api:latest
+        env:
+        - name: CHROMA_HOST
+          value: chroma.rag-services.svc.cluster.local
+        - name: CHROMA_PORT
+          value: "8000"
+        - name: OLLAMA_URL
+          value: http://ollama-external.rag-services.svc.cluster.local:11434
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rag-api
+  namespace: rag-services
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    targetPort: 8080
+    name: http
+  selector:
+    app: rag-api

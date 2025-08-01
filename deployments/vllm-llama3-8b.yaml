@@ -1,0 +1,84 @@
+# vllm-llama3-8b.yaml  – single-GPU Autopilot deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llama3-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llama3-server
+  template:
+    metadata:
+      labels:
+        app: llama3-server
+        ai.gke.io/model: Llama-3-Instruct-8B
+        ai.gke.io/inference-server: vllm
+    spec:
+      containers:
+      - name: inference-server
+        image: us-docker.pkg.dev/vertex-ai/vertex-vision-model-garden-dockers/pytorch-vllm-serve:20250405_1205_RC01
+        resources:               # << fits on a single L4 (24 GB) or A100-40G
+          requests:
+            cpu: "12"            # vCPUs
+            memory: 48Gi
+            ephemeral-storage: 50Gi
+            nvidia.com/gpu: "1"
+          limits:
+            cpu: "12"
+            memory: 48Gi
+            ephemeral-storage: 50Gi
+            nvidia.com/gpu: "1"
+        args:
+        - python3
+        - -m
+        - vllm.entrypoints.api_server
+        - --host=0.0.0.0
+        - --port=7080
+        - --swap-space=8
+        - --max-model-len=8192          # fits typical 8 B context window
+        - --gpu-memory-utilization=0.90
+        - --disable-log-stats
+        - --dtype=auto
+        - --kv-cache-dtype=auto
+        - --max-num-seqs=64
+        - --model=meta-llama/Llama-3-8B-Instruct  # <-- change if you use a different 3.x model
+        - --tensor-parallel-size=1
+        env:
+        - name: MODEL_ID
+          value: "meta-llama/Llama-3-8B-Instruct"
+        - name: HUGGING_FACE_HUB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: hf-secret
+              key: hf_api_token
+        volumeMounts:
+        - mountPath: /dev/shm
+          name: dshm
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+      nodeSelector:
+        cloud.google.com/gke-accelerator: nvidia-l4     # or a100-40gb / h100-80gb etc.
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llama3-service
+spec:
+  selector:
+    app: llama3-server
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 7080
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hf-secret
+type: Opaque
+stringData:
+  hf_api_token: ${HF_TOKEN}

@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm-a100
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vllm-a100
+  template:
+    metadata:
+      labels:
+        app: vllm-a100
+        ai.gke.io/model: Llama-3-8B-Instruct
+        ai.gke.io/inference-server: vllm
+    spec:
+      nodeSelector:
+        cloud.google.com/gke-accelerator: nvidia-a100-40gb
+      containers:
+      - name: server
+        image: us-docker.pkg.dev/vertex-ai/vertex-vision-model-garden-dockers/pytorch-vllm-serve:20250405_1205_RC01
+        resources:
+          limits:
+            nvidia.com/gpu: "1"
+            memory: 85Gi
+            cpu: "12"
+          requests:
+            nvidia.com/gpu: "1"
+            memory: 85Gi
+            cpu: "12"
+        args:
+        - python3
+        - -m
+        - vllm.entrypoints.api_server
+        - --host=0.0.0.0
+        - --port=7080
+        - --model=meta-llama/Llama-3-8B-Instruct
+        - --gpu-memory-utilization=0.90
+        - --swap-space=8
+        - --max-model-len=8192
+      tolerations:            # tolerate the GPU taint that GKE adds
+      - key: "nvidia.com/gpu"
+        operator: "Equal"
+        value: "present"
+        effect: "NoSchedule"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vllm-a100-svc
+spec:
+  selector:
+    app: vllm-a100
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 7080
+  type: ClusterIP

@@ -1,0 +1,118 @@
+This is for Piston Inline product
+1. Series / pressure rating
+
+PI – Piston-Inline flowmeter (the only series listed) 
+
+2. Housing material (500 psi models) 
+
+A – Aluminum - for lube-oil service
+
+B – Brass - for water service
+
+3. Housing material (1 500 psi models)
+
+Z – 316 Stainless steel - for chemicals, corrosives and oil 
+
+4. Internal moving parts
+
+Z – 316L stainless steel (standard for water, oil, chemicals, corrosives) 
+
+5. Seal material 
+
+B – Buna-N: suited to water or mineral oil
+
+F – Viton: suited to acids and some caustics
+
+6. Maximum-flow scale codes (select the units you need) 
+
+GH – gallons per hour (5 – 300 GPH choices)
+
+GM – gallons per minute (0.25 – 30 GPM choices)
+
+LH – liters per hour (20 – 1 000 LPH choices)
+
+LM – liters per minute (5 – 100 LPM choices)
+
+CMH – cubic meters per hour (1 – 6 m³/h choices)
+
+GLM – dual scale, GPM & LPM
+
+DGM – dual-viscosity scale (for two different fluids)
+
+7. Threaded pipe connections (choose size and thread form) 
+
+Nominal size	Code (NPT)	SAE	BSPP	BSPT	Max flow (GPM)
+¼″	2	4T	4BP	4BT	5
+⅜″	3	6T	6BP	6BT	10
+½″	4	8T	8BP	8BT	15
+¾″	6	12T	12BP	12BT	20
+1″	8	16T	16BP	16BT	30
+
+8. Flanged connections (example syntax)
+2FWCS150RF = ¼″ pipe, F-welded, Carbon Steel, 150 lb ANSI raised-face flange. Size codes: 2 = ¼″, 4 = ½″, 6 = ¾″, 8 = 1″. 
+
+9. Fluid-property block
+Immediately after the flow-scale code you append your fluid’s viscosity and specific gravity:
+
+format = [number][V/C/CS][SG]
+
+V = SSU, C = centipoise, CS = centistokes
+
+Example 32V1.0 → 32 SSU viscosity, SG = 1.0 
+
+10. Optional extras (add after fluid block, separated by dashes) 
+
+HT – high-temperature construction (to 400 °F)
+
+HA – high-accuracy ±1 % FS (≥ 1 GPM ranges)
+
+ST – stainless ID tag
+
+TG – laminated safety-glass window
+
+W / F – wall or foot mounting brackets
+
+Putting it together – anatomy of the catalog’s sample code
+PI-B Z F 10GM-4 32V1.0-HT decodes as:
+
+PI – Piston-inline meter
+
+B – Brass body (≤ 500 psi) for water
+
+Z – 316L stainless internals
+
+F – Viton seals
+
+10GM – 10 GPM full-scale
+
+-4 – ½″ NPT ports (code 4)
+
+32V1.0 – 32 SSU, SG 1.0 calibration
+
+-HT – high-temperature option enabled
+
+Use this key to build or read any PI-series part number without needing the original chart.
+
+The model code fragment shown on page 3—“A61 W L-HT-5D”—is really a miniature sentence, and every token in 
+it can be swapped for another value listed in the same table:
+
+Control-box + switch: A61 means the compact A-box fitted with one SPDT, 
+3-wire, high-temperature switch. The identical switch can be ordered in the aluminium L-box or 
+the 316 SS Z-box simply by replacing the prefix with L61 or Z61. 
+
+Service rating: the next letter is the enclosure’s environmental seal.
+ W = weather-proof (Type 4), but you may substitute N for oil-/dust-tight (Type 12) 
+ or X for corrosion-proof (Type 4X) service. 
+
+Flow direction: the single character after the 
+service code fixes how the meter is mounted: R left-to-right, 
+L right-to-left (used in the example), U up-flow or D down-flow. 
+
+Special options block: everything between the dashes gathers “extras.” 
+HT invokes the high-temperature package, but you could insert HA (±1 % high-accuracy), 
+ST (stainless ID tag), TG (laminated safety-glass window), or the bracket codes W (wall) and F (foot). 
+
+Switch set-point: the final field programs the SPDT’s actuation level. 
+5D tells the factory to set the contact at 5 GPM on a declining-flow (“down”) condition; 
+no other example values are shown, so the customer replaces “5” with any desired flow number and 
+chooses D or U for falling or rising flow.

@@ -1,0 +1,53 @@
+# fastapi
+# uvicorn[standard]
+# httpx
+# langchain==0.1.20         # or newer
+# langchain-community
+# langchain-huggingface
+# langchain-embeddings
+# chromadb
+# python-dotenv
+
+# ── Core LLM / RAG ───────────────────────────────────────────────────────────
+openai
+langchain                # core LangChain
+langchain-community      # loaders / vectorstores
+langchain-openai                 # OpenAI wrapper
+langchain-ollama        # local LLM wrapper
+langchain-huggingface
+langchain-tavily
+
+# ── Embeddings & Vector DB ───────────────────────────────────────────────────
+sentence-transformers
+faiss-cpu
+chromadb
+chromadb>=0.4.24 
+langchain-chroma>=0.1.0
+pydantic>=2.6
+pydantic-settings>=2.1
+
+
+# ── Data & file handling ─────────────────────────────────────────────────────
+pandas
+pypdf2
+openpyxl
+python-dotenv
+pyyaml>=6
+fastapi
+httpx
+# ── External tools & search ──────────────────────────────────────────────────
+tavily-python
+huggingface-hub
+
+# ── Web / API service stack ──────────────────────────────────────────────────
+fastapi
+uvicorn[standard]
+gunicorn
+# ── Front-end / local UI (optional) ──────────────────────────────────────────
+streamlit
+python-dotenv
+langfuse
+# ── Monitoring & observability ───────────────────────────────────────────────
+prometheus-fastapi-instrumentator
+langfuse
+locust

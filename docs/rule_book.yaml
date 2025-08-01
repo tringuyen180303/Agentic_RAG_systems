@@ -1,0 +1,119 @@
+# Medium‑Vane Flowmeter Rule Book (MN/MM/MH series)
+# ───────────────────────────────────────────────────
+# All symbols and constraints are scraped from the October 2023 datasheet.
+# Cite = page numbers shown in PDF; keep for traceability.
+#
+# You can import this YAML into Python and turn it into lookup tables or
+# Pydantic enums/validators.
+
+series:
+  MN: "Normal‑pressure (300 psi)"  # p.2 fileciteturn2file6
+  MM: "Medium‑pressure (500 psi)"  # p.2 fileciteturn2file6
+  MH: "High‑pressure (2000 psi)"   # p.2 fileciteturn2file6
+
+housing_materials:               # p.2 "HOW TO ORDER" table fileciteturn2file6
+  A: {desc: "Aluminum + nylon flow chamber",   typical: "lube‑oil"}
+  B: {desc: "Brass     + nylon flow chamber",   typical: "water"}
+  D: {desc: "Aluminum, all‑metal",                typical: "lube‑oil"}
+  F: {desc: "Brass, all‑metal",                   typical: "water"}
+  I: {desc: "316 SS",                              typical: "chemicals/corrosives"}
+  M: {desc: "Carbon steel",                       typical: "oil"}
+
+internal_parts:                  # p.2 fileciteturn2file0
+  I: "316 SS"
+  T: "Titanium"
+
+seal_materials:                  # p.2 fileciteturn2file0
+  B: "Buna‑N"
+  F: "Viton"
+  K: "Kalrez (dynamic) + Viton (static)"
+
+max_flow_ranges:                 # p.2 flow‑rate list fileciteturn2file0
+  GM:  [10,15,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160]
+  LM:  [40,50,60,70,80,90,100,150,200,250,300,350,400,500,600]
+  CMH: [2.25,2.5,3,4,5,6,7,8,9,10,15,20,25,30]
+  GLM: "dual‑scale gallons & litres"   # no LCD dual scales
+  DGM: "dual‑viscosity GPM scale"
+
+valve_option:                    # p.3 valve note fileciteturn2file3
+  symbol: V
+  material: "brass"
+  rules:
+    allowed_series: [MN]
+    disallowed_housings: [M, I]  # carbon steel & 316SS
+    port_limits:
+      max_port_inch: 1
+      max_flow_gpm: 30
+      exception:
+        port: 1‑1/2
+        max_flow_gpm: 50
+
+ports:
+  threaded:                       # p.3 table (NPT row) fileciteturn2file3
+    "4":  {size_inch: 0.5, max_gpm: 25}
+    "6":  {size_inch: 0.75, max_gpm: 50}
+    "8":  {size_inch: 1,   max_gpm: 70}
+    "10": {size_inch: 1.25, max_gpm: 70}
+    "12": {size_inch: 1.5, max_gpm: 100}
+    "16": {size_inch: 2,   max_gpm: 160}
+  flanged_example: "4FTCS150RF = 1/2″ threaded Carbon‑Steel class 150 raised‑face"  # p.3 fileciteturn2file3
+
+fluid_spec:                       # p.3 "FLUID CHARACTERISTICS" fileciteturn2file3
+  viscosity_units:
+    V: SSU
+    C: cP
+    CS: cSt
+  pattern: "<visc>[unit]<SG>"        # e.g. 320V.9
+  dual_visc_example: "320/150V.9"
+
+special_options:                 # p.3‑4 list fileciteturn2file4
+  HT:
+    desc: "High‑temperature (300 °F / 400 °F) build"
+    requires:
+      all_metal_housing: true
+      seal_in: [F, K]     # Viton/EPR/Kalrez/Teflon
+      service_in: [W, X]
+      adds: [metal_scale]
+  ST: {desc: "Stainless‑steel ID tag"}
+  TG: {desc: "Laminated safety‑glass window"}
+  E:  {desc: "Manual override shaft", note: "mandatory on welded medium‑pressure flanges"}
+  DS:
+    desc: "Dual‑spring (lower min‑flow)"
+    only_on_flow_gpm: ">=100"        # see p.4 table
+  Z86:
+    desc: "Clearance vane for particulates"
+    min_max_flow_gpm: 16
+    new_min_flow_gpm: 4
+  Z67MH:
+    desc: "316 SS external bolts on MH"
+    effect: "limits MH pressure to 1500 psi"
+
+control_box:
+  box_types:
+    A: small
+    L: small
+    Z: small
+    R: hi‑res
+    T: transmitter
+  service_codes:                 # p.3 fileciteturn2file4
+    N: {desc: "Type 12 (oil/dust‑tight)", boxes: [A,L,Z]}
+    W: {desc: "Type 4 (weatherproof)", boxes: [A,L,Z,R,T]}
+    X: {desc: "Type 4X (corrosion‑proof)", boxes: [A,L,Z,R,T]}
+  flow_direction: {R: L→R, L: R→L, U: up, D: down}
+  switch_setting:
+    pattern: "<value><U|D>"   # 10D = set‑point 10 GPM declining
+  # Sub‑tables for each box (excerpt A/L/Z):
+  boxes:
+    small:
+      display_only: {A0: A, L0: L, Z0: Z}
+      spdt_3wire:   {A1: A, L1: L, Z1: Z}
+      spdt_3wire_hv: {A1B: A, L1B: L, Z1B: Z}
+      # … continue as needed, see PDF page 3‑4
+
+business_rules:
+  - "Valve V only valid with series=MN and housing ∉ {M,I} and obey port/flow caps."
+  - "Option HT forces service in {W,X} and requires metal scale."
+  - "Special option DS must accompany dual‑spring flow range according to page 4 table."
+  - "Option Z67MH reduces MH pressure rating to 1500 psi."
+  - "Every model must include a viscosity+SG string (fluid_spec)."
+

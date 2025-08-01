@@ -1,0 +1,61 @@
+groups:
+  
+  - name: RAGServiceRequestRules
+    rules:
+      # Warning when your service sees >100 req/s for 5m
+      - alert: HighRequestRate
+        expr: |
+          sum by (job) (
+            rate(http_requests_total[1m])
+          ) > 100
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary:  High request rate for {{ $labels.job }}
+          description: "{{ $value }} requests/sec over the last minute (for 5m)"
+
+      # Critical if >200 req/s sustained for 2m
+      - alert: CriticalRequestRate
+        expr: |
+          sum by (job) (
+            rate(http_requests_total[1m])
+          ) > 200
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary:  Critical request rate for {{ $labels.job }}
+          description: "{{ $value }} requests/sec over the last minute (for 2m)"
+
+  - name: NodeCPUUsageRules
+    rules:
+      # Warning if non-idle CPU >80% averaged over 5m
+      - alert: HighNodeCPU
+        expr: |
+          100 * (
+            1 - avg by (instance) (
+              rate(node_cpu_seconds_total{mode="idle"}[5m])
+            )
+          ) > 80
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary:  High CPU usage on {{ $labels.instance }}
+          description: "{{ $value }}% CPU in use for 10m"
+
+      # Critical if non-idle CPU >95% averaged over 5m
+      - alert: CriticalNodeCPU
+        expr: |
+          100 * (
+            1 - avg by (instance) (
+              rate(node_cpu_seconds_total{mode="idle"}[5m])
+            )
+          ) > 95
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary:  Critical CPU usage on {{ $labels.instance }}
+          description: "{{ $value }}% CPU in use for 5m"

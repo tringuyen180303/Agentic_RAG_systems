@@ -1,0 +1,14 @@
+receivers:
+  otlp:
+    protocols:
+      http:     # listens on 4318 by default
+      grpc:     # listens on 4317 by default
+
+exporters:
+  debug:     # just prints spans to stdout
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [debug]
