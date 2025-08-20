@@ -1,8 +1,10 @@
-# RAG_DWYEROMEGA 🤖
+# AGENTIC RAG SYSTEMS 🤖
 
 **Agentic RAG System with Rules, Local Documents, and Web Search**
 
 A production-ready Retrieval-Augmented Generation (RAG) system that combines local document retrieval, web search capabilities, and intelligent guardrails to provide safe, accurate, and contextual AI responses.
+
+![Alt text](images/rag_design.png)
 
 ## 🚀 Features
 
