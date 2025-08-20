@@ -6,6 +6,7 @@ import hashlib
 from dataclasses import dataclass
 from langfuse import Langfuse
 from dotenv import load_dotenv
+import datetime
 class GuardrailViolationType(Enum):
     SENSITIVE_DATA = "sensitive_data"
     COMPETITOR_MENTION = "competitor_mention"
@@ -28,7 +29,7 @@ class RAGGuardrails:
         self.langfuse = Langfuse(
             secret_key=os.getenv("LANGFUSE_SECRET_KEY"),
             public_key=os.getenv("LANGFUSE_PUBLIC_KEY"),
-            host=os.getenv("LANGFUSE_HOST", "http://localhost:3000"),
+            host=os.getenv("LANGFUSE_HOST", "http://langfuse-web:3000"),
         )
         
         # Sensitive patterns

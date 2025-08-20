@@ -1,52 +1,29 @@
-# # deployment-chroma.yaml
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: chroma
-#   namespace: rag-services
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels: { app: chroma }
-#   template:
-#     metadata:
-#       labels: { app: chroma }
-#     spec:
-#       containers:
-#       - name: chroma
-#         image: ghcr.io/chroma-core/chroma:latest
-#         env:
-#         - name: IS_PERSISTENT
-#           value: "TRUE"
-#         volumeMounts:
-#         - mountPath: /data
-#           name: data
-#       volumes:
-#       - name: data
-#         persistentVolumeClaim:
-#           claimName: chroma-pvc
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: chroma
-#   namespace: rag-services
-# spec:
-#   type: ClusterIP
-#   ports:
-#   - port: 8000
-#     targetPort: 8000
-#     protocol: TCP
-#   selector:
-#     app: chroma
+apiVersion: v1
+kind: Service
+metadata:
+  name: chroma-svc
+  namespace: rag-services
+  labels:
+    app: chroma
+spec:
+  type: ClusterIP
+  selector:
+    app: chroma
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
 
+---
+# 3️⃣ your StatefulSet unchanged, but serviceName now points
+#    to the headless Service above (name: chroma)
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: chromadb
   namespace: rag-services
 spec:
-  serviceName: "chroma"
+  serviceName: "chroma"   # <— must match the headless Service name
   replicas: 1
   selector:
     matchLabels:
@@ -73,4 +50,3 @@ spec:
       resources:
         requests:
           storage: 1Gi
-      # make sure this matches your PVC, or omit if using templates

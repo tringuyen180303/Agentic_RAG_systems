@@ -1,0 +1,52 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: rag-api-alerts
+  namespace: monitoring
+  labels:
+    release: prometheus   # must match your kube-prometheus-stack release label
+spec:
+  groups:
+  - name: RAGServiceRequestRules
+    rules:
+    - alert: HighRequestRate
+      expr: |
+        sum by (job) (rate(http_requests_total[1m])) > 100
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary:  High request rate for {{ $labels.job }}
+        description: "{{ $value }} req/s over the last minute (for 5m)"
+
+    - alert: CriticalRequestRate
+      expr: |
+        sum by (job) (rate(http_requests_total[1m])) > 200
+      for: 2m
+      labels:
+        severity: critical
+      annotations:
+        summary:  Critical request rate for {{ $labels.job }}
+        description: "{{ $value }} req/s over the last minute (for 2m)"
+
+  - name: NodeCPUUsageRules
+    rules:
+    - alert: HighNodeCPU
+      expr: |
+        100 * (1 - avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m]))) > 80
+      for: 10m
+      labels:
+        severity: warning
+      annotations:
+        summary:  High CPU on {{ $labels.instance }}
+        description: "{{ $value }}% CPU in use for 10m"
+
+    - alert: CriticalNodeCPU
+      expr: |
+        100 * (1 - avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m]))) > 95
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary:  Critical CPU on {{ $labels.instance }}
+        description: "{{ $value }}% CPU in use for 5m"

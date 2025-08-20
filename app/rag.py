@@ -42,11 +42,11 @@ S = get_settings()
 #embeddings = HuggingFaceEmbeddings(model_name=S.embed_model)
 embeddings = HuggingFaceEmbeddings(model_name="models/all-MiniLM-L6-v2")  # local model
 import chromadb
-client = chromadb.HttpClient(host="localhost", port=8000)   # service name in compose
+# client = chromadb.HttpClient(host="localhost", port=8000)   # service name in compose
 
-# CHROMA_HOST = os.getenv("CHROMA_HOST", "chroma")   # <- service name in docker-compose.yml
-# CHROMA_PORT = int(os.getenv("CHROMA_PORT", 8000))
-# client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
+CHROMA_HOST = os.getenv("CHROMA_HOST", "chroma")   # <- service name in docker-compose.yml
+CHROMA_PORT = int(os.getenv("CHROMA_PORT", 8000))
+client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
 collection = client.get_collection("docs")
 
 vectordb = Chroma(
@@ -94,7 +94,7 @@ any more tools.
 llm = ChatOllama(
     model=S.model_name,
     temperature=0.1,
-    max_tokens=512,          # cap response
+    max_tokens=1024,          # cap response
     streaming=True,
     http_client=http_client, # NEW in langchain 0.1.20
     base_url=S.ollama_url,   # pass through for clarity

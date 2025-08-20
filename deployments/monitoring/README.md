@@ -17,3 +17,12 @@ kubectl -n monitoring port-forward svc/prometheus-server 9090:80
 
 ### Add in connection for server URL
 http://prometheus-server.monitoring.svc.cluster.local:80
+
+
+
+
+##### Latest
+
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update

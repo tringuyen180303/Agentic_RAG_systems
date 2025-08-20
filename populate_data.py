@@ -63,6 +63,12 @@ embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-
 # 2) Raw HTTP Chroma client
 client = chromadb.HttpClient(host="localhost", port=8000)
 
+# CHROMA_HOST = os.getenv("CHROMA_HOST", "chroma-svc")   # <- service name in docker-compose.yml
+# CHROMA_PORT = int(os.getenv("CHROMA_PORT", 8000))
+# print(f"Connecting to Chroma at {CHROMA_HOST}:{CHROMA_PORT} …")
+# client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
+
+
 # 3) (Re)create the collection
 try:
     client.get_collection("docs")
@@ -97,7 +103,7 @@ print(f"Pushed {len(texts)} chunks into Chroma.")
 import chromadb
 
 # 1) connect to your running Chroma server
-client = chromadb.HttpClient(host="localhost", port=8000)
+# client = chromadb.HttpClient(host="localhost", port=8000)
 
 # 2) pull back the list of collections
 #    as of chromadb v0.4+, this is `list_collections()`

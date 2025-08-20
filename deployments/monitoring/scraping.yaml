@@ -1,0 +1,19 @@
+# service-monitor-ragapi.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: rag-api
+  namespace: monitoring
+  labels:
+    release: prometheus          # must match your kube-prometheus-stack release
+spec:
+  selector:
+    matchLabels:
+      app: rag-api               # matches the label on your rag-api Service
+  namespaceSelector:
+    matchNames:
+      - rag-services
+  endpoints:
+    - port: http                 # name of the port in your Service
+      path: /metrics
+      interval: 15s

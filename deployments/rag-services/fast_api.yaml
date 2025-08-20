@@ -5,38 +5,62 @@ metadata:
   name: rag-api
   namespace: rag-services
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels: { app: rag-api }
   template:
     metadata:
       labels: { app: rag-api }
     spec:
+      volumes:
+        - name: docs-volume
+          configMap:
+            name: rag-docs
       containers:
       - name: rag-api
-        image: docker.io/tringuyen180303/rag-api:latest
+        image: docker.io/tringuyen180303/rag-server:latest
+        args: ["uvicorn", "app.api:app", "--host","0.0.0.0","--port","8080","--log-level","debug"]
         env:
         - name: CHROMA_HOST
-          value: chroma.rag-services.svc.cluster.local
+          value: chroma-svc  # Use the service name defined in rag-services namespace
         - name: CHROMA_PORT
           value: "8000"
         - name: OLLAMA_URL
-          value: http://ollama-external.rag-services.svc.cluster.local:11434
+          value: http://ollama-svc:11434 
+        - name: LANGFUSE_HOST
+          value: "http://localhost:3000"
+        - name: LANGFUSE_SECRET_KEY
+          value: sk-lf-aacc95d6-9cdc-4d35-90b3-242698c92372
+          # valueFrom:
+          #   secretKeyRef:
+          #     name: langfuse-secret
+          #     key: secret_key
+        - name: LANGFUSE_PUBLIC_KEY
+          value: pk-lf-2c4268c5-2e6f-4760-940a-70c56e17743c
         ports:
         - containerPort: 8080
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "250m"
-          limits:
-            memory: "1Gi"
+            memory: "4Gi"
             cpu: "500m"
+          limits:
+            memory: "12Gi"
+            cpu: "2"
+        volumeMounts:
+        - name: docs-volume
+          mountPath: /srv/docs
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: rag-api
   namespace: rag-services
+  labels:
+    app: rag-api
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8080"
+    prometheus.io/path: "/metrics"
 spec:
   type: ClusterIP
   ports:

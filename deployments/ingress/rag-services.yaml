@@ -1,0 +1,43 @@
+# deployments/rag-services/chroma-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: chroma-ui
+  namespace: rag-services
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - chroma.example.com
+        - rag.example.com
+      secretName: observability-tls   # or another TLS secret
+  rules:
+    - host: chroma.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: chroma-svc
+                port:
+                  number: 8000
+    - host: rag.example.com
+      http:
+        paths:
+          - path: /            # or simply `/` if you don’t need prefix rewrites
+            pathType: Prefix
+            backend:
+              service:
+                name: rag-api
+                port:
+                  number: 8080
+          - path: /metrics
+            pathType: Prefix
+            backend:
+              service:
+                name: rag-api
+                port:
+                  number: 8080

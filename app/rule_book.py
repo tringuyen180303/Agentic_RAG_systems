@@ -192,15 +192,4 @@ rulebook_tool = Tool(
     func        = consult_and_explain,
     description = "Validate a flow-meter model code and return JSON with fields: valid, errors, suggestions..",
 )
-# for code in [
-#     "MN-BIB70GM-8-320V.9",   # VALID example
-#     "MG-ATB70GM-8-320V9",    # dot missing
-#     "MN-BIB70GM-8-320V.9",   # internals B (!) -> invalid
-#     "MM-XTB15GLM-4-V100C1.1", # housing X invalid, etc.
-#     "SN-XTB15GLM-4-V100C1.1",
-#     "SG-MTB15GLM-4-V100C1.1",
-#     "SH-MTB15GLM-4-32V0.9", # Small-vane style
-
-# ]:
-#     print(consult_and_explain(code))
 

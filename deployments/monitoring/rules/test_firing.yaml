@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: test-fire
+  namespace: monitoring
+  labels:
+    release: prometheus   # must match your Helm release label
+spec:
+  groups:
+    - name: smoke
+      rules:
+        - alert: AlwaysFiring
+          expr: vector(1)
+          labels:
+            severity: critical
+          annotations:
+            summary: "Test alert"
+            description: "This should appear in Discord."

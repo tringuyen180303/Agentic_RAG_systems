@@ -1,13 +1,22 @@
-# ollama-external.yaml   (namespace: app)
+# Service
 apiVersion: v1
 kind: Service
 metadata:
-  name: ollama-external
-  namespace: app
+  name: ollama-svc
+  namespace: rag-services
 spec:
-  type: ExternalName
-  externalName: 127.0.0.1.nip.io  # nip.io maps IP to DNS => 203-0-113-5.nip.io
   ports:
-  - name: http
-    port: 11434
-    targetPort: 11434
+    - port: 11434
+      targetPort: 11434
+---
+# Endpoints
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: ollama-svc
+  namespace: rag-services
+subsets:
+  - addresses:
+      - ip: <ip address of your computer>
+    ports:
+      - port: 11434

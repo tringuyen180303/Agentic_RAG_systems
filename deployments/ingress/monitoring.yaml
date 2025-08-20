@@ -20,7 +20,7 @@ spec:
               service:
                 name: grafana
                 port:
-                  number: 3000
+                  number: 80
     - host: prometheus.example.com
       http:
         paths:
@@ -28,6 +28,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: prometheus-server
+                name: prometheus-kube-prometheus-prometheus
                 port:
                   number: 9090

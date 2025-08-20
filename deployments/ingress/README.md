@@ -1,58 +1,3 @@
-<!-- helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo update
-helm install ingress-nginx ingress-nginx/ingress-nginx \
-  --namespace ingress-nginx --create-namespace
-
-minikube tunnel to create loadbalancer
-
-create TLS
-cat > san.cnf <<EOF
-[req]
-default_bits       = 2048
-prompt             = no
-default_md         = sha256
-distinguished_name = dn
-req_extensions     = v3_req
-
-[dn]
-C  = US
-ST = State
-L  = City
-O  = Observability
-CN = grafana.example.com
-
-[v3_req]
-subjectAltName = @alt_names
-
-[alt_names]
-DNS.1 = grafana.example.com
-DNS.2 = prometheus.example.com
-EOF
-
-
-then with openssl to generate key + crt
-
-openssl req -x509 -nodes -days 365 \
-  -newkey rsa:2048 \
-  -keyout observability.key \
-  -out observability.crt \
-  -config san.cnf \
-  -extensions v3_req
-
-## apply the secret
-kubectl create secret tls observability-tls \
-  --namespace=monitoring \
-  --key=observability.key \
-  --cert=observability.crt
-
-## apply
- kubectl apply -f deployments/ingress/monitoring.yaml 
-
- sudo sh -c 'cat >> /etc/hosts <<EOF
-127.0.0.1 grafana.example.com
-127.0.0.1 prometheus.example.com
-EOF' -->
-
 # Observability Ingress Setup Guide for Minikube
 
 ## Table of Contents
@@ -151,3 +96,7 @@ sudo sh -c 'cat >> /etc/hosts <<EOF
 127.0.0.1 prometheus.example.com
 EOF'
 ```
+
+
+
+### Scraping data for prometheus
