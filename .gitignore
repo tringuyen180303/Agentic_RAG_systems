@@ -9,3 +9,4 @@ vectorstore/
 *.pyc
 *.pyo
 __pycache__/
+deployments/rag-services/langfuse-secret.yaml
